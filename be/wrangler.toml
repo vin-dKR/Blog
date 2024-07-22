@@ -2,7 +2,7 @@ name = "be"
 compatibility_date = "2024-07-13"
 
 [vars]
-DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNjljZjkwZTctZWMzMi00MDk3LWIzMjYtNmVkZTFhMmQ4ZGYwIiwidGVuYW50X2lkIjoiZTUwZmE2ZGM1ZWY0MmVhNTlhZWExYzY0ZDc1Njc0MWEwMWFhNmIzYmIwYjNhNTljMGQzZWEwYTFlOTcyOThiZiIsImludGVybmFsX3NlY3JldCI6ImUwMjRjZjI1LWU1MGEtNGEzYS04YTlhLWUwMTI5YTljY2ExYSJ9.pziJkpBr6JcffdANsm-iD3zqL8d4wa104zrGPmTe_Q0"
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=YOUR_POOL_APIKEY_FROM_PRISMA-ACCELERATE"
 SECRET_KEY="mySecretKey"
 
 # [[kv_namespaces]]
