@@ -2,8 +2,8 @@ name = "be"
 compatibility_date = "2024-07-13"
 
 [vars]
-DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiOGMwODRhZjYtZjgwMS00NDI3LTgzYmYtNjcxNmI0Y2E5Y2I4IiwidGVuYW50X2lkIjoiZTUwZmE2ZGM1ZWY0MmVhNTlhZWExYzY0ZDc1Njc0MWEwMWFhNmIzYmIwYjNhNTljMGQzZWEwYTFlOTcyOThiZiIsImludGVybmFsX3NlY3JldCI6ImUwMjRjZjI1LWU1MGEtNGEzYS04YTlhLWUwMTI5YTljY2ExYSJ9.B3gpDcvkmo6hcrjzW3Fy23r5x5bCiyzBpvgrj-P4agg"
-SECRET_KEY="mySecretKey"
+DATABASE_URL="prisma://accelerate.YOUR_PRISMA_ACCELERATE_URL"
+SECRET_KEY="YOUR_SECRET_KEY"
 
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
