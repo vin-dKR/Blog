@@ -1,1 +1,6 @@
-{}
+{
+  "dependencies": {
+    "@vinodkr/medium-common": "^1.0.0",
+    "react-router-dom": "^6.25.1"
+  }
+}
