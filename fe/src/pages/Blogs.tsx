@@ -1,10 +1,9 @@
-import React from 'react'
 import BlogCard from '../components/BlogCard'
 import Navbar from '../components/Navbar'
-import { useBlog } from '../hooks/useBlog'
+import { useBlogs } from '../hooks'
 
 function Blogs() {
-    const { loading, blogs } = useBlog()
+    const { loading, blogs } = useBlogs()
     const author = "Author Name"
 
     if (loading) { 
