@@ -18,15 +18,22 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
 
     async function sendRequest(type: 'signup' | 'signin') {
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type}`, postInput)
+            const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type}`, postInput, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
             const jwt = response.data
             localStorage.setItem("jwt", jwt)
             navigate("/blog")
         } catch (error) {
-            console.log(error)
+            if (axios.isAxiosError(error)) {
+                alert(error.response?.data || error.message)
+            } else {
+                alert('An unexpected error occurred')
+            }
         }
     }
-    
     return (
         <div className='h-screen flex justify-center flex-col '>
             {/* {JSON.stringify(postInput)} */}
