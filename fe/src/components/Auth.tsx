@@ -1,15 +1,32 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import LabelInput from './LabelInput'
 import Button from './Button'
 import { SignupSchema } from '@vinodkr/medium-common'
+import axios from 'axios'
+import { BACKEND_URL } from '../config'
 
 function Auth({ type }: { type: 'signup' | 'signin' }) {
+
+    const navigate = useNavigate()
+
     const [postInput, setPostInput] = useState<SignupSchema>({
         email: '',
         password: '',
         name: ''
     })
+
+    async function sendRequest(type: 'signup' | 'signin') {
+        try {
+            const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type}`, postInput)
+            const jwt = response.data
+            localStorage.setItem("jwt", jwt)
+            navigate("/blog")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
     return (
         <div className='h-screen flex justify-center flex-col '>
             {/* {JSON.stringify(postInput)} */}
@@ -18,7 +35,7 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
                     <div className="flex flex-col gap-2 ">
                         <div className='flex flex-col gap-2'>
                             <div className="text-3xl font-extrabold">
-                                Create an account
+                                {type === "signup" ? "Create an account" : "Welcome back!"}
                             </div>
                             <div className='text-slate-400'>
                                 {type === "signup" ? "Already have an account?" : "Don't have an account?"}
@@ -26,21 +43,21 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
                             </div>
                         </div>
                         <div>
-                            { type === "signup" ? 
-                            <LabelInput
-                            label="Name"
-                            id="name"
-                            name="name"
-                            value="name"
-                            type="name"
-                            placeholder="Name"
-                            required={true}
-                            onChange={(e) => {
-                                setPostInput(prev => ({
-                                    ...prev,
-                                    name: e.target.value
-                                }))
-                            }} /> : "" }
+                            {type === "signup" ?
+                                <LabelInput
+                                    label="Name"
+                                    id="name"
+                                    name="name"
+                                    value="name"
+                                    type="name"
+                                    placeholder="Name"
+                                    required={true}
+                                    onChange={(e) => {
+                                        setPostInput(prev => ({
+                                            ...prev,
+                                            name: e.target.value
+                                        }))
+                                    }} /> : ""}
                             <LabelInput
                                 label="Email"
                                 id="email"
@@ -71,7 +88,7 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
                                 }} />
                         </div>
                         <div>
-                            <Button type={type} />
+                            <Button type={type} onClick={sendRequest} />
                         </div>
                     </div>
                 </div>
