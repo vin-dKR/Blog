@@ -1,4 +1,5 @@
 import BlogCard from '../components/BlogCard'
+import BlogsSceleton from '../components/BlogsSceleton'
 import Navbar from '../components/Navbar'
 import { useBlogs } from '../hooks'
 
@@ -7,7 +8,9 @@ function Blogs() {
     const author = "Author Name"
 
     if (loading) { 
-        return <div>Loading...</div> 
+        return <div>
+            <BlogsSceleton />
+        </div>
     }
     return (
         <div>

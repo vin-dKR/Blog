@@ -1,9 +1,11 @@
-import { useState } from "react";
 import Navbar from "../components/Navbar"
+import { useSetRecoilState } from "recoil";
+import { titleAtom, descriptionAtom } from "../store/atoms/atom";
 
 function Publish() {
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+    const setTitle = useSetRecoilState(titleAtom);
+    const setContent = useSetRecoilState(descriptionAtom);
+
     return (
         <div>
             <Navbar author="John Doe" />
@@ -13,7 +15,7 @@ function Publish() {
                     placeholder="Title"
                     className="w-full text-5xl font-bold mb-4 p-2 border-none outline-none break-words focus:ring-0 placeholder-gray-300 whitespace-normal overflow-hidden"
                     // style={{ minHeight: '200px' }}
-                    value={title}
+                    // value={title}
                     onChange={(e) => {
                         e.target.style.height = 'auto';
                         e.target.style.height = e.target.scrollHeight + 'px';
@@ -25,7 +27,7 @@ function Publish() {
                     className="w-full text-xl mt-4 p-2 border-none outline-none focus:ring-0 placeholder-gray-300 resize-none overflow-hidden"
                     rows={1}
                     style={{ minHeight: '200px' }}
-                    value={content}
+                    // value={content}
                     onChange={(e) => {
                         e.target.style.height = 'auto';
                         e.target.style.height = e.target.scrollHeight + 'px';
