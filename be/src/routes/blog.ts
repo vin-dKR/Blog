@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client/edge";
+import { Prisma, PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
@@ -111,17 +111,20 @@ blogRouter.get('/bulk', async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate())
 
-  const posts = await prisma.post.findMany({
-    select: {
-      id: true,
-      title: true,
-      content: true,
-      author: {
-        select: {
-          name: true
-        }
+  const select: Prisma.PostSelect = {
+    id: true,
+    title: true,
+    content: true,
+    createdAt: true,
+    author: {
+      select: {
+        name: true
       }
-    }
+    },
+  }
+
+  const posts = await prisma.post.findMany({
+    select
   })
 
   return c.json({posts})

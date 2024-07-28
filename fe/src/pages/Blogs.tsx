@@ -12,30 +12,14 @@ function Blogs() {
     return (
         <div>
             <Navbar author={author} />
-            <BlogCard
-                title='Make faucking website like no one did ever.'
-                description='This is a description of the blog post. It is a long description that will be used to describe the blog post.'
-                author='Author Name'
-                date='Date'
-            />
-            <BlogCard
-                title='Make faucking website like no one did ever.'
-                description='This is a description of the blog post. It is a long description that will be used to describe the blog post.'
-                author='Author Name'
-                date='Date'
-            />
-            <BlogCard
-                title='Make faucking website like no one did ever.'
-                description='This is a description of the blog post. It is a long description that will be used to describe the blog post.'
-                author='Author Name'
-                date='Date'
-            />
-            <BlogCard
-                title='Make faucking website like no one did ever.'
-                description='This is a description of the blog post. It is a long description that will be used to describe the blog post.'
-                author='Author Name'
-                date='Date'
-            />
+            {blogs.map((blog) => (
+                <BlogCard
+                    title={blog.title}
+                    description={blog.content}
+                    author={blog.author.name}
+                    date={blog.createdAt ? new Date(blog.createdAt) : undefined}
+                />
+            ))}
         </div>
     )
 }
