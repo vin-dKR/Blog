@@ -38,10 +38,11 @@ userRouter.post("/signup", async (c) => {
       id: user.id,
       // exp: Math.floor(Date.now() / 1000) + 60 * 5,
     }
-    const token = await sign(payload, c.env.SECRET_KEY)
+    const jwt = await sign({
+      id: user.id
+    }, c.env.SECRET_KEY);
 
-    console.log(user)
-    return c.json(token)
+    return c.text(jwt)
   } catch (e) {
     console.log(e);
     c.status(403)
@@ -77,11 +78,13 @@ userRouter.post("/signin", async (c: any) => {
       return c.json({ msg: "User not found!" })
     }
 
-    const jwt = await sign({ id: user.id }, c.env.SECRET_KEY)
-    console.log(jwt)
-    return c.json("You are logged IN ")
+    const jwt = await sign({
+      id: user.id
+    }, c.env.SECRET_KEY);
+
+    return c.text(jwt)
   } catch (e) {
-    c.status(403)
+    c.status(411)
     return c.text("invalid")
   }
 });
