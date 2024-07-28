@@ -1,5 +1,5 @@
-import React from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 function Home() {
   return (
@@ -17,9 +17,8 @@ function Home() {
         <div className="space-x-4">
           <a href="#" className="text-gray-600">Our story</a>
           <a href="#" className="text-gray-600">Membership</a>
-          <a href="#" className="text-gray-600">Write</a>
-          <a href="#" className="text-gray-600">Sign in</a>
-          <button className="bg-black text-white px-4 py-2 rounded-full">Get started</button>
+          <Link to="/signin" className="text-gray-600">Sign in</Link>
+          <Link to="/signup" className="bg-black text-white px-4 py-2 rounded-full">Get started</Link>
         </div>
       </nav>
 
@@ -30,7 +29,7 @@ function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <p>Be part of a better internet. <a href="#" className="underline">Get 20% off membership for a limited time</a></p>
+        <p>Be part of a better internet. <a href="mailto:vinodkumarmurmu@gmail.com" className="underline">Get 20% OFF: Hire Me NOW!</a></p>
       </motion.div>
 
       {/* Main content */}
@@ -48,7 +47,7 @@ function Home() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Start reading
+            <Link to="/signup">Start reading</Link>
           </motion.button>
         </motion.div>
         <motion.div 

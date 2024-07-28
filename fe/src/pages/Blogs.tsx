@@ -1,11 +1,13 @@
+import { useRecoilValue } from 'recoil'
 import BlogCard from '../components/BlogCard'
 import BlogsSceleton from '../components/BlogsSceleton'
 import Navbar from '../components/Navbar'
 import { useBlogs } from '../hooks'
+import { authorAtom } from '../store/atoms/atom'
 
 function Blogs() {
     const { loading, blogs } = useBlogs()
-    const author = "Author Name"
+    const author = useRecoilValue(authorAtom)
 
     if (loading) { 
         return <div>
@@ -22,6 +24,7 @@ function Blogs() {
             {blogs.map((blog) => (
                 //outer card in "/blogs"
                 <BlogCard
+                    key={blog.id}
                     id={blog.id}
                     title={blog.title}
                     description={blog.content}

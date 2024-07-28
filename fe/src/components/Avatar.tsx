@@ -1,4 +1,6 @@
 import React from 'react'
+import { useSetRecoilState } from 'recoil'
+import { authorAtom } from '../store/atoms/atom'
 
 interface AvatarProps {
     author: string
@@ -6,6 +8,12 @@ interface AvatarProps {
 }
 
 function Avatar({ author, size }: AvatarProps) {
+  const setAuthor = useSetRecoilState(authorAtom)
+
+  React.useEffect(() => {
+    setAuthor(author)
+  }, [setAuthor])
+
   return (
     
 <div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 ${size === "small" ? "w-6 h-6" : size === "medium" ? "w-8 h-8" : "w-10 h-10"}`}>
