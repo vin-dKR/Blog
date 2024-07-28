@@ -16,6 +16,7 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
         name: ''
     })
 
+
     async function sendRequest(type: 'signup' | 'signin') {
         try {
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type}`, postInput, {
@@ -24,6 +25,7 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
                 },
             })
             const jwt = response.data
+            console.log(jwt)
             localStorage.setItem("jwt", jwt)
             navigate("/blogs")
         } catch (error) {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import Auth from '../components/Auth';
 import Quote from '../components/Quote';
