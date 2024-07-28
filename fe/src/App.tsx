@@ -7,14 +7,15 @@ import Signup from './pages/Signup'
 import Blogs from './pages/Blogs'
 import Publish from './pages/Publish'
 import { RecoilRoot } from 'recoil'
+import Home from './pages/Home'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/signin" element={<Signin />} />

@@ -15,7 +15,7 @@ function Navbar({ author }: { author: string }) {
     <div className='flex justify-between items-center px-10 py-5 border-b border '>
       <div className='text-2xl font-bold'>
         <Link to='/blogs'>
-          Medium
+        StoryHub
         </Link>
       </div>
       <div className='flex items-center'>

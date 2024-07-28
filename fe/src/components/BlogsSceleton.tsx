@@ -3,7 +3,6 @@ import Navbar from './Navbar'
 function BlogsSceleton() {
   return (
     <div>
-        <Navbar author='X' />
     <div className='flex flex-col w-1/2 mx-auto mt-3'>
         <div className='flex flex-col border-b border-gray-200 pb-5 animate-pulse'>
             <div className='flex items-center gap-3'>

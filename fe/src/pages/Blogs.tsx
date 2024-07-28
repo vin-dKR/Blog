@@ -9,6 +9,10 @@ function Blogs() {
 
     if (loading) { 
         return <div>
+            <Navbar author='X' />
+            <BlogsSceleton />
+            <BlogsSceleton />
+            <BlogsSceleton />
             <BlogsSceleton />
         </div>
     }
