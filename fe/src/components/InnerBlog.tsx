@@ -14,7 +14,7 @@ interface Blog {
 function InnerBlog({ blog }: { blog: Blog }) {
   return (
     <>
-        <Navbar author={blog.author.name} />
+        <Navbar />
         <div className="max-w-3xl mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-4">{blog.title}</h1>
         <div className="flex items-center mb-6">

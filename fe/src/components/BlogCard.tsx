@@ -17,9 +17,9 @@ function BlogCard({ id, title, description, author, date }: BlogCardProps) {
     };
 
     return (
-        <Link to={`/blog/${id}`}>
-            <div>
-                <div className='flex flex-col w-1/2 mx-auto mt-3 cursor-pointer'>
+        <div>
+            <div className='flex flex-col w-1/2 mx-auto mt-3 cursor-pointer'>
+                <Link to={`/blog/${id}`}>
                     <div className='flex flex-col border-b border-gray-200 pb-5 '>
                         <div className='flex items-center gap-3'>
                             <Avatar size='small' author={author} />
@@ -37,9 +37,9 @@ function BlogCard({ id, title, description, author, date }: BlogCardProps) {
                             {`${Math.ceil(description.length / 100)} min(s) read`}
                         </div>
                     </div>
-                </div>
+                </Link>
             </div>
-        </Link>
+        </div>
     )
 }
 

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 
 export interface Blog {
@@ -72,4 +74,26 @@ export const useBlog = ({ id }: { id: number }) => {
     }
 }
 
+export const useRedirectIfSignedIn = () => {
+    const [token, setToken] = useState<string | null>(null)
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      const token = localStorage.getItem('jwt');
+      if (token) {
+        try {
+          const decodedToken = jwtDecode(token);
+          setToken(String(decodedToken))
+          if ((decodedToken.exp ?? 0) * 1000 > Date.now()) {
+            navigate('/blogs');
+          }
+        } catch (error) {
+          console.error('Invalid token:', error);
+        }
+      }
+    }, []);
 
+    return {
+        token
+    }
+  }

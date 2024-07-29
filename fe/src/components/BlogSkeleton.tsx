@@ -1,9 +1,12 @@
+import { useRecoilValue } from 'recoil'
 import Navbar from './Navbar'
+import { authorAtom } from '../store/atoms/atom'
 
 function InnerBlogSkeleton() {
+    const authorr = useRecoilValue(authorAtom)
   return (
     <div>
-        <Navbar author='X' />
+        <Navbar author={authorr} />
     <div className="max-w-3xl mx-auto px-4 py-8 animate-pulse">
         <div className="h-10 bg-gray-200 rounded w-3/4 mb-4"></div>
         <div className="flex items-center mb-6">

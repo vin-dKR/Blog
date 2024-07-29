@@ -1,14 +1,15 @@
 import Navbar from "../components/Navbar"
-import { useSetRecoilState } from "recoil";
-import { titleAtom, descriptionAtom } from "../store/atoms/atom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { titleAtom, descriptionAtom, authorAtom } from "../store/atoms/atom";
 
 function Publish() {
     const setTitle = useSetRecoilState(titleAtom);
     const setContent = useSetRecoilState(descriptionAtom);
+    const author = useRecoilValue(authorAtom)
 
     return (
         <div>
-            <Navbar author="John Doe" />
+            <Navbar author={author} />
             <div className="max-w-4xl mx-auto mt-8 px-4">
                 <input
                     type="text"

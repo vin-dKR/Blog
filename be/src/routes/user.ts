@@ -42,11 +42,11 @@ userRouter.post("/signup", async (c) => {
       id: user.id
     }, c.env.SECRET_KEY);
 
-    return c.text(jwt)
+    return c.json({ jwt, email: user.email, name: user.name })
   } catch (e) {
     console.log(e);
     c.status(403)
-    return c.text("invalid")
+    return c.text("Sign UP Failed")
   }
 
 
@@ -82,9 +82,9 @@ userRouter.post("/signin", async (c: any) => {
       id: user.id
     }, c.env.SECRET_KEY);
 
-    return c.text(jwt)
+    return c.json({ jwt, email: user.email, name: user.name })
   } catch (e) {
     c.status(411)
-    return c.text("invalid")
+    return c.text("Sign IN Failed")
   }
 });

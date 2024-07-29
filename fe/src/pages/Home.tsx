@@ -1,28 +1,16 @@
 import { motion } from 'framer-motion'
-import { Link, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useBlogs } from '../hooks'
-import BlogsSceleton from '../components/BlogsSceleton'
-import Navbar from '../components/Navbar'
+import { Link, Navigate, } from 'react-router-dom'
+import { useRedirectIfSignedIn } from '../hooks'
+
 
 
 function Home() {
 
-    const navigate = useNavigate()
-    const { loading, blogs } = useBlogs()
+    // if user is already signed in, redirect to /blogs
+    const { token } = useRedirectIfSignedIn()
 
-    useEffect(() => {
-        if (!loading && blogs.length > 0) {
-            console.log("User is authenticated, redirecting to /blogs")
-            navigate('/blogs', { replace: true })
-        }
-    }, [loading, blogs, navigate])
-
-    if (loading) {
-        return <div>
-            <Navbar author={"X"} />
-            <BlogsSceleton />
-        </div> // Or a more sophisticated loading indicator
+    if(token) {
+        return <Navigate to="/blogs" />
     }
 
     return (

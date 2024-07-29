@@ -5,21 +5,15 @@ import Button from './Button'
 import { SignupSchema } from '@vinodkr/medium-common'
 import axios from 'axios'
 import { BACKEND_URL } from '../config'
-// import { useSetRecoilState } from 'recoil';
-// import { userAtom } from '../store/atoms/atom';
 
 
 function Auth({ type }: { type: 'signup' | 'signin' }) {
-
     const navigate = useNavigate()
-
     const [postInput, setPostInput] = useState<SignupSchema>({
         email: '',
         password: '',
         name: ''
     })
-
-    // const setUser = useSetRecoilState(userAtom);
 
     async function sendRequest(type: 'signup' | 'signin') {
         try {
@@ -28,10 +22,15 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
                     'Content-Type': 'application/json',
                 },
             })
-            const jwt = response.data
-            // setUser(jwt)
-            localStorage.setItem("jwt", jwt)
-            navigate("/blogs")
+            const jwt = response.data.jwt
+            // const email = response.data.email
+            const name = response.data.name
+
+            if (jwt && jwt.length > 0) {
+                localStorage.setItem("jwt", jwt)
+                localStorage.setItem("name", name)
+                navigate("/blogs")
+            }
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 console.log(error.response?.data || error.message)
