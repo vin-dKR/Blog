@@ -41,8 +41,11 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
         }
     }
     return (
-        <div className='h-screen w-full overflow-hidden flex flex-col items-center justify-center bg-green-100'>
-            <div className='w-full max-w-md mx-auto p-8 bg-white bg-opacity-10 backdrop-filter backdrop-blur-xl rounded-xl shadow-xl'>
+        <div className='h-screen w-full overflow-hidden flex flex-col items-center justify-center bg-green-100 relative'>
+            <div className='absolute inset-0 overflow-hidden'>
+                <div className='reflection-light'></div>
+            </div>
+            <div className='w-full max-w-md mx-auto p-8 bg-white bg-opacity-10 backdrop-filter backdrop-blur-xl rounded-xl shadow-xl relative z-10'>
                 <div className="space-y-8">
                     <div>
                         <h2 className="text-center text-3xl font-bold text-gray-800">
@@ -50,12 +53,12 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
                         </h2>
                         <p className="mt-2 text-center text-sm text-gray-700">
                             {type === "signup" ? "Already have an account?" : "Don't have an account?"}
-                            <Link to={type === "signup" ? "/signin" : "/signup"} className="font-medium text-blue-700 hover:text-blue-600 ml-1">
+                            <Link to={type === "signup" ? "/signin" : "/signup"} className="font-medium text-blue-700 hover:text-blue-600 ml-1 underline">
                                 {type === "signup" ? "Sign in" : "Sign up"}
                             </Link>
                         </p>
                     </div>
-                    <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); sendRequest(type); }}>
+                    <form className="space-y-4 text-slate-950" onSubmit={(e) => { e.preventDefault(); sendRequest(type); }}>
                         {type === "signup" && (
                             <LabelInput
                                 label="Name"
