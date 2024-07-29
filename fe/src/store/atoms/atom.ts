@@ -9,8 +9,3 @@ export const descriptionAtom = atom<string>({
   key: 'descriptionAtom',
   default: '',
 });
-
-export const authorAtom = atom<string>({
-  key: 'authorAtom',
-  default: '',
-});
