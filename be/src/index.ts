@@ -13,7 +13,7 @@ const app = new Hono<{
 app.use(
   '/*',
   cors({
-    origin: ['https://mediyum.vercel.app/', 'http://localhost:5173'],
+    origin: ['https://mediyum.vercel.app', 'http://localhost:5173'],
     allowHeaders: ['Content-Type', 'Authorization'],
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     maxAge: 86400, // 24 hours
