@@ -10,6 +10,9 @@ export default {
         dmSans: ['"DM Sans"', 'sans-serif'],
         playwrite: ['"Playwrite BE VLG"', 'sans-serif'],
       },
+      colors: {
+        'app-green': '#34aa44',
+      }
     },
   },
   plugins: [],
