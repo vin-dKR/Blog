@@ -1,9 +1,6 @@
-import { useRecoilValue } from 'recoil'
 import Navbar from './Navbar'
-import { authorAtom } from '../store/atoms/atom'
 
 function InnerBlogSkeleton() {
-    const authorr = useRecoilValue(authorAtom)
   return (
     <div>
         <Navbar />
