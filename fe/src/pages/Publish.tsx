@@ -9,7 +9,7 @@ function Publish() {
 
     return (
         <div>
-            <Navbar author={author} />
+            <Navbar />
             <div className="max-w-4xl mx-auto mt-8 px-4">
                 <input
                     type="text"
