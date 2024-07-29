@@ -13,6 +13,36 @@ export interface Blog {
     }
 }
 
+
+export const useBlogs = () => {
+    const [loading, setLoading] = useState(true);
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [error, setError] = useState<string | null>(null)
+
+    useEffect(() => {
+        axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`
+            }
+        })
+            .then(response => {
+                setBlogs(response.data.posts);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error('Error fetching blogs:', err)
+                setError('Failed to fetch blogs. Please try again later.')
+                setLoading(false)
+            })
+    }, [])
+
+    return {
+        loading,
+        blogs,
+        error
+    }
+}
+
 export const useBlog = ({ id }: { id: number }) => {
     const [loading, setLoading] = useState(true);
     const [blog, setBlog] = useState<Blog>();
@@ -43,31 +73,3 @@ export const useBlog = ({ id }: { id: number }) => {
 }
 
 
-export const useBlogs = () => {
-    const [loading, setLoading] = useState(true);
-    const [blogs, setBlogs] = useState<Blog[]>([]);
-    const [error, setError] = useState<string | null>(null)
-
-    useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("jwt")}`
-            }
-        })
-            .then(response => {
-                setBlogs(response.data.posts);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error('Error fetching blogs:', err)
-                setError('Failed to fetch blogs. Please try again later.')
-                setLoading(false)
-            })
-    }, [])
-
-    return {
-        loading,
-        blogs,
-        error
-    }
-}

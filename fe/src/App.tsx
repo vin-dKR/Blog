@@ -11,11 +11,6 @@ import { RecoilRoot } from 'recoil'
 import Home from './pages/Home'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const user = useRecoilValue(userAtom)
-  console.log(user)
-  if (!user) {
-    return <Navigate to="/" replace />
-  }
   
   return <>{children}</>
 }
