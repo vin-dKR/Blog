@@ -14,3 +14,8 @@ export const authorAtom = atom<string>({
   key: 'authorAtom',
   default: '',
 });
+
+export const userAtom = atom<string>({
+  key: 'userAtom',
+  default: '',
+});

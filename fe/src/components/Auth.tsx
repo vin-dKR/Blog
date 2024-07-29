@@ -5,6 +5,9 @@ import Button from './Button'
 import { SignupSchema } from '@vinodkr/medium-common'
 import axios from 'axios'
 import { BACKEND_URL } from '../config'
+import { useSetRecoilState } from 'recoil';
+import { userAtom } from '../store/atoms/atom';
+
 
 function Auth({ type }: { type: 'signup' | 'signin' }) {
 
@@ -16,6 +19,7 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
         name: ''
     })
 
+    const setUser = useSetRecoilState(userAtom);
 
     async function sendRequest(type: 'signup' | 'signin') {
         try {
@@ -25,7 +29,7 @@ function Auth({ type }: { type: 'signup' | 'signin' }) {
                 },
             })
             const jwt = response.data
-            console.log(jwt)
+            setUser(jwt)
             localStorage.setItem("jwt", jwt)
             navigate("/blogs")
         } catch (error) {

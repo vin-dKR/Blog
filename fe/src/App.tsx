@@ -1,5 +1,7 @@
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { userAtom } from './store/atoms/atom'
 import Signin from './pages/Signin'
 import Blog from './pages/Blog'
 import Signup from './pages/Signup'
@@ -8,6 +10,16 @@ import Publish from './pages/Publish'
 import { RecoilRoot } from 'recoil'
 import Home from './pages/Home'
 
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const user = useRecoilValue(userAtom)
+  console.log(user)
+  if (!user) {
+    return <Navigate to="/" replace />
+  }
+  
+  return <>{children}</>
+}
+
 function App() {
 
   return (
@@ -15,11 +27,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/blog/:id" element={<Blog />} />
-          <Route path="/blogs" element={<Blogs />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/publish" element={<Publish />} /> 
+          <Route path="/blog/:id" element={<ProtectedRoute><Blog /></ProtectedRoute>} />
+          <Route path="/blogs" element={<ProtectedRoute><Blogs /></ProtectedRoute>} />
+          <Route path="/publish" element={<ProtectedRoute><Publish /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </RecoilRoot>
