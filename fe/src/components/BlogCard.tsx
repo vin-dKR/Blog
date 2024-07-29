@@ -18,14 +18,14 @@ function BlogCard({ id, title, description, author, date }: BlogCardProps) {
 
     return (
         <div>
-            <div className='flex flex-col w-1/2 mx-auto mt-3 cursor-pointer'>
+            <div className='flex flex-col mx-auto w-3/4 mt-3 cursor-pointer md:w-1/2'>
                 <Link to={`/blog/${id}`}>
                     <div className='flex flex-col border-b border-gray-200 pb-5 '>
                         <div className='flex items-center gap-3'>
                             <Avatar size='small' author={author} />
                             <p>{author}</p>
                             <span>•</span>
-                            <p className='text-gray-500'>{formatDate(date)}</p>
+                            <p className='text-xs text-gray-500'>{formatDate(date)}</p>
                         </div>
                         <div className='mt-3'>
                             <h1 className='text-2xl font-bold'>{title}</h1>
