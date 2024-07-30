@@ -1,13 +1,11 @@
 import { motion } from 'framer-motion'
 import { Link, Navigate, } from 'react-router-dom'
-import { useRedirectIfSignedIn } from '../hooks'
-
-
+import { useRedirectIfSignedIn, useScrollDirection } from '../hooks'
 
 function Home() {
-
     // if user is already signed in, redirect to /blogs
     const { token } = useRedirectIfSignedIn()
+    const scrollDirection = useScrollDirection()
 
     if (token) {
         return <Navigate to="/blogs" />
@@ -16,22 +14,26 @@ function Home() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-200 top-0 w-full">
             {/* Navbar */}
-            <nav className="flex justify-between items-center py-4 px-6 bg-white bg-opacity-80 backdrop-blur-md ">
-                <motion.h1
-                    className="text-3xl font-bold text-indigo-800"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    MediYum
-                </motion.h1>
-                <div className="space-x-4">
-                    <a href="#" className="text-gray-600 hidden sm:inline">Our story</a>
-                    <a href="#" className="text-gray-600 hidden sm:inline">Membership</a>
-                    <Link to="/signin" className="text-gray-600">Sign in</Link>
-                    <Link to="/signup" className="bg-black text-white px-4 py-2 rounded-full">Get started</Link>
-                </div>
-            </nav>
+            <div className={`sticky top-0 transition-transform duration-300 z-10 ${
+                scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
+            }`}>
+                <nav className="flex justify-between items-center py-4 px-2 bg-white bg-opacity-80 backdrop-blur-md md:px-6">
+                    <motion.h1
+                        className="text-xl font-bold text-indigo-800"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        MediYum
+                    </motion.h1>
+                    <div className="space-x-4">
+                        <a href="#" className="text-gray-600 hidden sm:inline">Our story</a>
+                        <a href="#" className="text-gray-600 hidden sm:inline">Membership</a>
+                        <Link to="/signin" className="text-gray-600 text-sm">Sign in</Link>
+                        <Link to="/signup" className="bg-black text-white px-4 py-2 rounded-full">Get started</Link>
+                    </div>
+                </nav>
+            </div>
 
             {/* Banner */}
             <motion.div
@@ -51,14 +53,14 @@ function Home() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                    <h2 className="text-6xl font-serif mb-6 text-indigo-900 leading-tight md:text-8xl ">Discover <span className="text-purple-600">Human Experience</span><span className="text-yellow-500"> & Ideas</span> </h2>
+                    <h2 className="text-4xl font-serif mb-6 text-indigo-900 leading-tight md:text-6xl lg:text-8xl ">Discover <span className="text-purple-600">Human Experience</span><span className="text-yellow-500"> & Ideas</span> </h2>
                     <p className="text-sm mb-8 text-gray-700 md:text-2xl md:mb-2">A place to read, write, and deepen your understanding</p>
                     <motion.button
-                        className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full text-xl shadow-lg hover:shadow-xl transition duration-300 md:mt-20"
+                        className=" text-[12px] sm:text-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 md:mt-20 "
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <Link className='text-sm md:text-xl' to="/signup">Start reading</Link>
+                        <Link className='' to="/signup">Start reading</Link>
                     </motion.button>
                 </motion.div>
                 <motion.div
@@ -99,7 +101,6 @@ function Home() {
                     <a href="#">Careers</a>
                     <a href="#">Blog</a>
                     <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
                 </div>
             </footer>
         </div>
