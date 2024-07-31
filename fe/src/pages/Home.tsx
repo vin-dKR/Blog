@@ -46,7 +46,7 @@ function Home() {
             </motion.div>
 
             {/* Main content */}
-            <div className="container mx-auto px-6 pt-28 flex items-center">
+            <div className="container mx-auto px-6 pt-8 flex items-center">
                 <motion.div
                     className="w-1/2 m-1 md:w-4/5 m-7"
                     initial={{ opacity: 0, x: -50 }}
@@ -54,14 +54,8 @@ function Home() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
                     <h2 className="text-4xl font-serif mb-6 text-indigo-900 leading-tight md:text-6xl lg:text-8xl ">Discover <span className="text-purple-600">Human Experience</span><span className="text-yellow-500"> & Ideas</span> </h2>
-                    <p className="text-sm mb-8 text-gray-700 md:text-2xl md:mb-2">A place to read, write, and deepen your understanding</p>
-                    <motion.button
-                        className=" text-[12px] sm:text-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 md:mt-20 "
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <Link className='' to="/signup">Start reading</Link>
-                    </motion.button>
+                    <p className="text-sm mb-2 text-gray-700 md:text-2xl md:mb-2">A place to read, write, and deepen your understanding</p>
+                    
                 </motion.div>
                 <motion.div
                     className="w-1/2"
@@ -90,6 +84,19 @@ function Home() {
                         />
                     </motion.div>
                 </motion.div>
+            </div>
+            <div className='flex'>
+                <div className='ml-28'>
+                    <motion.div>
+                    <motion.button
+                            className=" text-[12px] sm:text-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Link className='' to="/signup">Start reading</Link>
+                        </motion.button>
+                    </motion.div>
+                </div>
             </div>
 
             {/* Footer */}

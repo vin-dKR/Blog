@@ -87,7 +87,7 @@ blogRouter.put("/", async(c) => {
       where: {
         id: body.id, 
       },
-      data: {
+      data: { 
         title: body.title,
         content: body.content
       }
