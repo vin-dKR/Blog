@@ -9,3 +9,8 @@ export const descriptionAtom = atom<string>({
   key: 'descriptionAtom',
   default: '',
 });
+
+export const loadingState = atom({
+  key: 'loadingState',
+  default: false,
+});
