@@ -88,3 +88,9 @@ userRouter.post("/signin", async (c: any) => {
     return c.text("Sign IN Failed")
   }
 });
+
+
+//just for the test not fot production
+userRouter.get("/test", (c) => {
+  return c.json({ msg: "Hello World" })
+})

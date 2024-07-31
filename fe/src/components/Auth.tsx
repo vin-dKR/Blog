@@ -7,7 +7,6 @@ import axios from 'axios'
 import { BACKEND_URL } from '../config'
 
 
-
 function Auth({ type }: { type: 'signup' | 'signin' }) {
     const navigate = useNavigate()
     const [postInput, setPostInput] = useState<SignupSchema>({

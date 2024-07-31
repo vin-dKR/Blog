@@ -70,40 +70,59 @@ blogRouter.post("/", async(c) => {
   }
 });
 
-blogRouter.put("/", async(c) => {
-  const body = await c.req.json();
-  const { success } = updateBlogPost.safeParse(body);
-  if (!success) {
-      c.status(400);
-      return c.json({ msg: "Inputs are not correct" });
-  }
 
+//update post api
+blogRouter.put("/", async (c: any) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate())
 
+  const body = await c.req.json()
+  const { id, title, content } = body
+
+  // Get the user ID from the JWT token
+  const userId = c.get('userId')
+
   try {
-    const post = await prisma.post.update({
+    // First, check if the post exists and belongs to the user
+    const existingPost = await prisma.post.findFirst({
       where: {
-        id: body.id, 
+        id: Number(id),
+        authorId: Number(userId)
+      }
+    })
+
+    if (!existingPost) {
+      c.status(403)
+      return c.json({
+        message: "You don't have permission to update this post or the post doesn't exist"
+      })
+    }
+
+    // If the post exists and belongs to the user, update it
+    const updatedPost = await prisma.post.update({
+      where: {
+        id: Number(id)
       },
-      data: { 
-        title: body.title,
-        content: body.content
+      data: {
+        title,
+        content
       }
     })
 
     return c.json({
-      id: post.id
-    });
+      message: "Post updated successfully",
+      post: updatedPost
+    })
 
   } catch (error) {
-    c.status(403)
-    c.json({
-      msg: "not updated yet"
+    console.error("Error updating post:", error)
+    c.status(500)
+    return c.json({
+      message: "Error updating post"
     })
   }
-});
+})
 
 
 blogRouter.get('/bulk', async (c) => {
@@ -167,5 +186,9 @@ blogRouter.get("/:id", async (c: any) => {
     })
   }
 });
+
+
+
+
 
 
