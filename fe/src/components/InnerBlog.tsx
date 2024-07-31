@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Avatar from "./Avatar"
 import Navbar from "./Navbar"
 
@@ -25,12 +26,14 @@ function InnerBlog({ blog }: { blog: Blog }) {
                         <span className="ml-2 text-sm text-gray-600">{new Date(blog.createdAt).toLocaleDateString()}</span>
                     </div>
                     <div>
-                        <button className="ml-4 flex items-center space-x-1 text-blue-600 hover:text-blue-800">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                            <span>Edit</span>
-                        </button>
+                        <Link to={`/blog/edit/${blog.id}`}>
+                            <button className="ml-4 flex items-center space-x-1 text-blue-600 hover:text-blue-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                <span>Edit</span>
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 <div className="border-t border-b border-gray-300 py-4 mb-6 flex justify-between items-center">

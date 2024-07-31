@@ -7,6 +7,7 @@ import Blogs from './pages/Blogs'
 import Publish from './pages/Publish'
 import { RecoilRoot } from 'recoil'
 import Home from './pages/Home'
+import Edit from './pages/Edit'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/publish" element={<Publish />} />
+          <Route path="/blog/edit/:id" element={<Edit />} />
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

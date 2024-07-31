@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Avatar from './Avatar'
 import { useRecoilValue } from 'recoil';
 import { descriptionAtom, titleAtom } from '../store/atoms/atom';
@@ -19,6 +19,8 @@ function Navbar() {
     localStorage.removeItem("jwt");
     navigate('/');
   };
+
+  const { id } = useParams();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -41,7 +43,36 @@ function Navbar() {
         </Link>
       </div>
       <div className='flex items-center'>
-        {window.location.pathname !== "/publish" && (
+        {window.location.pathname.startsWith("/blog/edit/") && (
+          <button 
+            className="mx-4 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300 ease-in-out flex items-center"
+            onClick={() => {
+              axios.put(`${BACKEND_URL}/api/v1/blog`, {
+                id: Number(id),
+                title,
+                content: description
+              }, {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+                }
+              })
+              .then(response => {
+                console.log('Blog updated successfully:', response.data);
+                navigate(`/blog/${id}`);
+              })
+              .catch(error => {
+                console.error('Error updating blog:', error);
+              });
+            }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+            Update
+          </button>
+        )}
+        {!window.location.pathname.startsWith("/publish") && !window.location.pathname.startsWith("/blog/edit/") && (
           <Link to="/publish" className="mx-4 px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition duration-300 ease-in-out flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
               <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
