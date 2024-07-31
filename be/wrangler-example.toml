@@ -1,0 +1,7 @@
+name = "be"
+compatibility_date = "2024-07-13"
+
+[vars]
+DATABASE_URL="prisma://accelerate.YOUR_PRISMA_ACCELERATE_URL"
+
+SECRET_KEY="YOUR_SECRET_KEY"
