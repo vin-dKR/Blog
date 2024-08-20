@@ -3,6 +3,10 @@
 Welcome to **Blog**! This is an open-source, modern blogging platform inspired by [Medium](https://medium.com). Built with **React**, **Tailwind CSS**, and **TypeScript**, this project aims to provide a simple yet powerful platform for users to share their stories and experiences.
 
 ![MyBlog Screenshot](https://github.com/user-attachments/assets/ad0b62db-0fc8-4ff1-8d18-aea0c6366a59)
+![image](https://github.com/user-attachments/assets/b9aaa8c6-9e56-4272-a264-03b4d9cfe6ad)
+![image](https://github.com/user-attachments/assets/0b6c9504-1e1d-46fe-b4c7-c8800b540669)
+![image](https://github.com/user-attachments/assets/6c896677-2596-451a-a94b-762ba5e887ef)
+
 
 
 ## Features
